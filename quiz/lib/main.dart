@@ -29,9 +29,12 @@ class QuizAppState extends State<QuizApp> {
     });
     print('Answer chosen!');
   }
-
   @override
   Widget build(BuildContext context){
+    List<Widget> answers = [];
+    for(String textAnswer in (questions[selectedQuestion]['answers'] as List)){
+      answers.add(Answer(textAnswer, answerQuestion));
+    }
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -39,11 +42,9 @@ class QuizAppState extends State<QuizApp> {
         ),
         body: Column(
           children: <Widget>[
-            SizedBox(height: 200),
+            SizedBox(height: 150),
             Question(questions[selectedQuestion]['text'].toString()),
-            Answer((questions[selectedQuestion]['answers'] as List)[0].toString(), answerQuestion),
-            Answer((questions[selectedQuestion]['answers'] as List)[1].toString(), answerQuestion),
-            Answer((questions[selectedQuestion]['answers'] as List)[2].toString(), answerQuestion),
+            ...answers,
           ]
         ),
       ),
