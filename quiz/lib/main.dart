@@ -10,6 +10,16 @@ final List<String> questions = [
   "Who is Harry Potter's arch enemy (at Hogwarts)",
 ];
 
+void answerQuestion(){
+  print('Answer chosen!');
+}
+
+void Function() anonymousFunctionAnswer() {
+  return () {
+    print('Answer #2 chosen!');
+  };
+}
+
 class QuizApp extends StatelessWidget{
   const QuizApp({super.key});
 
@@ -24,15 +34,18 @@ class QuizApp extends StatelessWidget{
           children: <Widget>[
             Text(questions[0]),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                // create a function that will be called when the button is pressed
+                print('First answer chosen!');
+              },
               child: Text('Voldemort'),
             ),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: anonymousFunctionAnswer(),
               child: Text('Quirrell'),
             ),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: answerQuestion,
               child: Text('Quirrell and Voldemort'),
             ),
           ]
