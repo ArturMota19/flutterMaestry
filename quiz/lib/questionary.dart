@@ -6,7 +6,7 @@ class Questionary extends StatelessWidget {
 
   final List<Map<String, Object>> questions;
   final int selectedQuestion;
-  final void Function () answerQuestion;
+  final void Function (int) answerQuestion;
 
   const Questionary({
     super.key,
@@ -28,7 +28,13 @@ class Questionary extends StatelessWidget {
           children: <Widget>[
             Question(questions[selectedQuestion]['text'].toString()),
             ...answers
-            .map((answ) => Answer(answ['text'] as String, answerQuestion))
+            .map((answ) => 
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Answer(answ['text'] as String, () => answerQuestion(answ['points'] as int)),
+              
+              )
+            )	
           ]
     );
   }

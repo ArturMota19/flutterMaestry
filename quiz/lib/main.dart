@@ -36,16 +36,18 @@ const questions = [
   }];
 class QuizAppState extends State<QuizApp> {
   var selectedQuestion = 0;
+  var totalPoints = 0;
 
 
   bool get hasQuestionSelected{
     return selectedQuestion < questions.length;
   }
   
-  void _answerQuestion(){
+  void _answerQuestion(int points){
     if(hasQuestionSelected){
       setState(() {
         selectedQuestion++;
+        totalPoints += points;
       });
     }
   }
@@ -63,7 +65,7 @@ class QuizAppState extends State<QuizApp> {
         body: hasQuestionSelected ? 
         Questionary(questions: questions, selectedQuestion: selectedQuestion, answerQuestion: _answerQuestion)
          :
-        Result()
+        Result(totalPoints)
         ,
       ),
     );
