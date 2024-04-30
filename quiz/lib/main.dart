@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 main (){
   runApp(QuizApp());
 }
 
-final List<String> questions = [
-  "Who wanted to steal the philosopher's stone??",
-  "What is Harry Potter's father's name?",
-  "Who is Harry Potter's arch enemy (at Hogwarts)",
+final List<Map<String, Object>> questions = [
+  {
+    'text': 'Who is the main antagonist in the Harry Potter series?',
+    'answers': ['Voldemort', 'Dumbledore', 'Hermione', 'Sirius Black'],
+  },
+  {
+    'text': 'Who is Harry Potter\'s father?',
+    'answers': ['James Potter', 'Sirius Black', 'Remus Lupin', 'Peter Pettigrew'],
+  },
+  {
+    'text': 'Who is Harry Potter\'s rival in Slytherin?',
+    'answers': ['Draco Malfoy', 'Crabbe', 'Goyle', 'Pansy Parkinson'],
+  }
 ];
 class QuizAppState extends State<QuizApp> {
   var selectedQuestion = 0;
@@ -29,19 +39,11 @@ class QuizAppState extends State<QuizApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(questions[selectedQuestion]),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: Text('Voldemort'),
-            ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: Text('Quirrell'),
-            ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: Text('Quirrell and Voldemort'),
-            ),
+            SizedBox(height: 200),
+            Question(questions[selectedQuestion]['text'].toString()),
+            Answer((questions[selectedQuestion]['answers'] as List)[0].toString(), answerQuestion),
+            Answer((questions[selectedQuestion]['answers'] as List)[1].toString(), answerQuestion),
+            Answer((questions[selectedQuestion]['answers'] as List)[2].toString(), answerQuestion),
           ]
         ),
       ),
