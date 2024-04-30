@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 main (){
-  runApp(const QuizApp());
+  runApp(QuizApp());
 }
 
 final List<String> questions = [
@@ -9,19 +10,15 @@ final List<String> questions = [
   "What is Harry Potter's father's name?",
   "Who is Harry Potter's arch enemy (at Hogwarts)",
 ];
+class QuizAppState extends State<QuizApp> {
+  var selectedQuestion = 0;
 
-void answerQuestion(){
-  print('Answer chosen!');
-}
-
-void Function() anonymousFunctionAnswer() {
-  return () {
-    print('Answer #2 chosen!');
-  };
-}
-
-class QuizApp extends StatelessWidget{
-  const QuizApp({super.key});
+  void answerQuestion(){
+    setState(() {
+      selectedQuestion++;
+    });
+    print('Answer chosen!');
+  }
 
   @override
   Widget build(BuildContext context){
@@ -32,16 +29,13 @@ class QuizApp extends StatelessWidget{
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[0]),
+            Question(questions[selectedQuestion]),
             ElevatedButton(
-              onPressed: (){
-                // create a function that will be called when the button is pressed
-                print('First answer chosen!');
-              },
+              onPressed: answerQuestion,
               child: Text('Voldemort'),
             ),
             ElevatedButton(
-              onPressed: anonymousFunctionAnswer(),
+              onPressed: answerQuestion,
               child: Text('Quirrell'),
             ),
             ElevatedButton(
@@ -53,5 +47,13 @@ class QuizApp extends StatelessWidget{
       ),
     );
   }
+}
+class QuizApp extends StatefulWidget{
+  
+  State<QuizApp> createState(){
+    return QuizAppState();
+  }
+
+  
 }
 
