@@ -1,52 +1,70 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import './result.dart';
+import './questionary.dart';
 
 main (){
   runApp(QuizApp());
 }
 
-final List<Map<String, Object>> questions = [
+const questions = [
   {
     'text': 'Who is the main antagonist in the Harry Potter series?',
-    'answers': ['Voldemort', 'Dumbledore', 'Hermione', 'Sirius Black'],
+    'answers': [
+      {'text': 'Voldemort', 'points': 10},
+      {'text': 'Dumbledore', 'points': 0},
+      {'text': 'Hermione', 'points': 0}, 
+      {'text': 'Sirius Black', 'points': 0}
+     ],
   },
   {
     'text': 'Who is Harry Potter\'s father?',
-    'answers': ['James Potter', 'Sirius Black', 'Remus Lupin', 'Peter Pettigrew'],
+    'answers': [
+      {'text': 'James Potter', 'points': 10},
+      {'text': 'Sirius Black', 'points': 0},
+      {'text': 'Remus Lupin', 'points': 0}, 
+      {'text': 'Peter Pettigrew', 'points': 0}
+    ],
   },
   {
     'text': 'Who is Harry Potter\'s rival in Slytherin?',
-    'answers': ['Draco Malfoy', 'Crabbe', 'Goyle', 'Pansy Parkinson'],
-  }
-];
+    'answers': [
+      {'text': 'Draco Malfoy', 'points': 10},
+      {'text': 'Crabbe', 'points': 0},
+      {'text': 'Goyle', 'points': 0}, 
+      {'text': 'Pansy Parkinson', 'points': 0}
+    ],
+  }];
 class QuizAppState extends State<QuizApp> {
   var selectedQuestion = 0;
 
-  void answerQuestion(){
-    setState(() {
-      selectedQuestion++;
-    });
-    print('Answer chosen!');
+
+  bool get hasQuestionSelected{
+    return selectedQuestion < questions.length;
   }
+  
+  void _answerQuestion(){
+    if(hasQuestionSelected){
+      setState(() {
+        selectedQuestion++;
+      });
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context){
-    List<Widget> answers = [];
-    for(String textAnswer in (questions[selectedQuestion]['answers'] as List)){
-      answers.add(Answer(textAnswer, answerQuestion));
-    }
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Quiz App'),
         ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(height: 150),
-            Question(questions[selectedQuestion]['text'].toString()),
-            ...answers,
-          ]
-        ),
+        body: hasQuestionSelected ? 
+        Questionary(questions: questions, selectedQuestion: selectedQuestion, answerQuestion: _answerQuestion)
+         :
+        Result()
+        ,
       ),
     );
   }
