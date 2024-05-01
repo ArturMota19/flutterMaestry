@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  Result(this.totalPoints, {super.key});
+  final void Function() onReset;
+  Result(this.totalPoints, this.onReset, {super.key});
   String get resultPhrase {
     if (totalPoints < 10) {
       return "Did you even read the books?!";
@@ -17,12 +18,17 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-          child: Text(
-              resultPhrase,
-              style: TextStyle(fontSize: 30),
-              textAlign: TextAlign.center,
+    return Column(
+      children: [
+        Center(
+              child: Text(
+                  resultPhrase,
+                  style: TextStyle(fontSize: 30),
+                  textAlign: TextAlign.center,
+                ),
             ),
-        ); 
+        ElevatedButton(onPressed: onReset, child: Text('Restart Quiz'))
+      ],
+    ); 
   }
 }

@@ -52,6 +52,13 @@ class QuizAppState extends State<QuizApp> {
     }
   }
 
+  void _resetForm(){
+    setState(() {
+      selectedQuestion = 0;
+      totalPoints = 0;
+    });
+  }
+
 
 
   @override
@@ -65,7 +72,7 @@ class QuizAppState extends State<QuizApp> {
         body: hasQuestionSelected ? 
         Questionary(questions: questions, selectedQuestion: selectedQuestion, answerQuestion: _answerQuestion)
          :
-        Result(totalPoints)
+        Result(totalPoints, _resetForm)
         ,
       ),
     );
