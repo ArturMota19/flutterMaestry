@@ -15,6 +15,14 @@ class RidesForm extends StatelessWidget {
 
   final void Function(Map<String, double>) onSubmit;
   
+  _submitForm(Map<String, double> passangers) {
+    // only the first passanger is required
+    print(passangers);
+    if(passangerController0.text.isEmpty || amountController0.text.isEmpty) {
+      return;
+    }
+    onSubmit(passangers);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +82,12 @@ class RidesForm extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       final passangers = {
-                        passangerController0.text: double.parse(amountController0.text),
-                        passangerController1.text: double.parse(amountController1.text),
-                        passangerController2.text: double.parse(amountController2.text),
-                        passangerController3.text: double.parse(amountController3.text),
+                        if(passangerController0.text.isNotEmpty) passangerController0.text: double.tryParse(amountController0.text) ?? 0.0,
+                        if(passangerController1.text.isNotEmpty) passangerController1.text: double.tryParse(amountController1.text) ?? 0.0,
+                        if(passangerController2.text.isNotEmpty) passangerController2.text: double.tryParse(amountController2.text) ?? 0.0,
+                        if(passangerController3.text.isNotEmpty) passangerController3.text: double.tryParse(amountController3.text) ?? 0.0,
                       };
-                      onSubmit(passangers);
+                      _submitForm(passangers);
                     },
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.purple),

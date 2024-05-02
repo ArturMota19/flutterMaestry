@@ -14,12 +14,8 @@ class RidesUser extends StatefulWidget {
 
 class _RidesUserState extends State<RidesUser> {
   final _rides = [
-    Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0, 'Carlos': 1.0}  , date: DateTime.now()),
+    Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0}  , date: DateTime.now()),
     Rides(id: '1', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
-    Rides(id: '2', passangers: {'Alice': 1.0, 'Bob': 2.0, 'Carlos': 1.0}  , date: DateTime.now()),
-    Rides(id: '3', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
-    Rides(id: '4', passangers: {'Alice': 1.0, 'Bob': 2.0, 'Carlos': 1.0}  , date: DateTime.now()),
-    Rides(id: '5', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
   ];
 
   _addRide(Map<String, double> passangers) {
