@@ -19,9 +19,11 @@ class RidesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300.0,
-      child: SingleChildScrollView(
-        child: Column(
-          children: rides.map((ride) => Card(
+      child: ListView.builder(
+        itemCount: rides.length,
+        itemBuilder: (ctx, index){
+          final ride = rides[index];
+          return Card(
             child: Row(
               children: [
                 Container(
@@ -69,8 +71,8 @@ class RidesList extends StatelessWidget {
                 ),
               ],
             )
-          )).toList(),
-        ),
+        );
+        },
       ),
     );
   }
