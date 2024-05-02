@@ -2,6 +2,7 @@ import 'package:expenses/models/rides.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import './models/rides.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const RideExpensesApp());
@@ -54,28 +55,51 @@ double totalAmount(Rides ride) {
               child: Text('Graph goes here'),
             ),
           ),
-          const SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.purple,
-              elevation: 5.0,
-              child: Text('Expenses goes here'),
-            ),
-          ),
           Column(
             children: _rides.map((ride) => Card(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    children: [
-                      Text(totalAmount(ride).toString())
-                    ],
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 20.0,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.purple,
+                        width: 2.0,
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'R\$: ${totalAmount(ride).toString()}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.purple,
+                      ),
+                    ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(ride.passangers.keys.toString()),
-                      Text(ride.date.toString())
+                      Text(
+                        ride.passangers.keys.toString().replaceAll('(', '').replaceAll(')', ''),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+
+                      ),
+                      Text(
+                        DateFormat('dd/MM/yyyy').format(ride.date),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                        ),
+                        
+                        )
                     ],
                   ),
                 ],
