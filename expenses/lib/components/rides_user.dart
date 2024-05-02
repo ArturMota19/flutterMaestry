@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import './rides_list.dart';
 import './rides_form.dart';
@@ -16,20 +18,24 @@ class _RidesUserState extends State<RidesUser> {
     Rides(id: '0', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
   ];
 
+  _addRide(Map<String, double> passangers) {
+    final newRide = Rides(
+      id: Random().nextDouble().toString(),
+      passangers: passangers,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _rides.add(newRide);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const SizedBox(
-          width: double.infinity,
-          child: Card(
-            color: Colors.purple,
-            elevation: 5.0,
-            child: Text('Graph goes here'),
-          ),
-        ),
         RidesList(_rides),
-        RidesForm(),
+        RidesForm(_addRide),
       ],
     );
   }

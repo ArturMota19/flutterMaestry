@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class RidesForm extends StatelessWidget {
   
-  RidesForm({super.key});
-  
+  RidesForm(this.onSubmit, {super.key});
+
   final passangerController0 = TextEditingController();
   final amountController0 = TextEditingController();
   final passangerController1 = TextEditingController();
@@ -12,6 +12,8 @@ class RidesForm extends StatelessWidget {
   final amountController2 = TextEditingController();
   final passangerController3 = TextEditingController();
   final amountController3 = TextEditingController();
+
+  final void Function(Map<String, double>) onSubmit;
   
 
   @override
@@ -71,6 +73,13 @@ class RidesForm extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
+                      final passangers = {
+                        passangerController0.text: double.parse(amountController0.text),
+                        passangerController1.text: double.parse(amountController1.text),
+                        passangerController2.text: double.parse(amountController2.text),
+                        passangerController3.text: double.parse(amountController3.text),
+                      };
+                      onSubmit(passangers);
                     },
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.purple),
