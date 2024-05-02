@@ -28,18 +28,20 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.purple,
         title: const Text('Ride Expenses'),
       ),
-      body: Column(
-        children: <Widget>[
-          const SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.purple,
-              elevation: 5.0,
-              child: Text('Graph goes here'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(
+              width: double.infinity,
+              child: Card(
+                color: Colors.purple,
+                elevation: 5.0,
+                child: Text('Graph goes here'),
+              ),
             ),
-          ),
-          RidesUser()
-        ],
+            RidesUser()
+          ],
+        ),
       ),
     );
   }
