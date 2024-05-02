@@ -23,10 +23,17 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final _rides = [
-    Rides(id: '0', title: 'New Ride1', amount: 6.0, date: DateTime.now()),
-    Rides(id: '1', title: 'New Ride2', amount: 5.0, date: DateTime.now()),
+    Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0, 'Carlos': 1.0}  , date: DateTime.now()),
+    Rides(id: '0', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
   ];
 
+double totalAmount(Rides ride) {
+  double total = 0.0;
+  for (var value in ride.passangers.values) {
+    total += value;
+  }
+  return total;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +42,11 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.purple,
         title: const Text('Ride Expenses'),
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
             child: Card(
               color: Colors.purple,
@@ -47,7 +54,7 @@ class MyHomePage extends StatelessWidget {
               child: Text('Graph goes here'),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
             child: Card(
               color: Colors.purple,
@@ -55,6 +62,26 @@ class MyHomePage extends StatelessWidget {
               child: Text('Expenses goes here'),
             ),
           ),
+          Column(
+            children: _rides.map((ride) => Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      Text(totalAmount(ride).toString())
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(ride.passangers.keys.toString()),
+                      Text(ride.date.toString())
+                    ],
+                  ),
+                ],
+              )
+            )).toList(),
+          )
         ],
       )
     );
