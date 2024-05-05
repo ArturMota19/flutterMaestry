@@ -18,16 +18,16 @@ class RidesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10.0),
       height: 600.0,
       child: rides.isEmpty ? Column(
         children: <Widget>[
+          const SizedBox(height: 20.0),
           Text(
             'No rides added yet!',
             style: Theme.of(context).textTheme.titleLarge,
           ),
+          const SizedBox(height: 20.0),
           Container(
-            padding: const EdgeInsets.all(20.0),
             height: 200.0,
             child: Image.asset(
               'assets/images/waiting.png',
