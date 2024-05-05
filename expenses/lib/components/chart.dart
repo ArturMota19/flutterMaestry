@@ -38,18 +38,21 @@ List<Map<String, Object>> get groupedRides {
     return Card(
       elevation: 6.0,
       margin: const EdgeInsets.all(20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: groupedRides.map((data) {
-          return Flexible(
-            fit: FlexFit.tight,
-            child: ChartBar(
-              label: '${data['day']}', 
-              spendingAmount: data['amount'] as double, 
-              percentual: (40.0 - (data['amount'] as double)) > 0 ? (40.0 - (data['amount'] as double)) / 40.0 : -1 * (40.0 - (data['amount'] as double)) / 40.0,
-            ),
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedRides.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: '${data['day']}', 
+                spendingAmount: data['amount'] as double, 
+                percentual: (40.0 - (data['amount'] as double)) > 0 ? (40.0 - (data['amount'] as double)) / 40.0 : -1 * (40.0 - (data['amount'] as double)) / 40.0,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

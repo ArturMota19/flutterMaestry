@@ -63,10 +63,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    Rides(id: '0', passengers: {'Alice': 100000.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
-    Rides(id: '2', passengers: {'Alicesdf': 1.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 30))),
-    Rides(id: '1', passengers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
-    Rides(id: '3', passengers: {'Artur': 42.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
+    Rides(id: '0', passengers: {'Artur': 22.0, 'Bob': 2.0, 'Carol': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
+    Rides(id: '0', passengers: {'Alisson': 2.0, 'Bruno': 34.0, 'Coralina': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
+    Rides(id: '0', passengers: {'Ambrosia': 4.0, 'Breno': 2.0, 'Celia': 5.0}  , date: DateTime.now().subtract(const Duration(days: 4))),
+    Rides(id: '0', passengers: {'Amélia': 9.0, 'Bosh': 2.0, 'Cap': 12.0}  , date: DateTime.now().subtract(const Duration(days: 3))),
   ];
 
   List<Rides> get _recentRides {

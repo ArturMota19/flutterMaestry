@@ -16,7 +16,7 @@ class ChartBar extends StatelessWidget {
     totalCost = totalCost < 0 ? totalCost * -1 : totalCost * -1;
 
     var newPercentual = percentual;
-    if(percentual > 40.0) {
+    if(percentual > 1.0) {
       newPercentual = 1.0;
     }
     return Column(
