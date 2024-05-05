@@ -1,3 +1,4 @@
+import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/rides_form.dart';
 import 'package:expenses/components/rides_list.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +63,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    // Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0}  , date: DateTime.now()),
-    // Rides(id: '1', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
+    Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
+    Rides(id: '2', passangers: {'Alicesdf': 1.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 30))),
+    Rides(id: '1', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
   ];
+
+  List<Rides> get _recentRides {
+    return _rides.where((ride) {
+      return ride.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
+
   _addRide(Map<String, double> passangers) {
     final newRide = Rides(
       id: Random().nextDouble().toString(),
@@ -107,14 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              width: double.infinity,
-              child: Card(
-                color: Theme.of(context).primaryColor,
-                elevation: 5.0,
-                child: const Text('Graph goes here'),
-              ),
-            ),
+            Chart(_recentRides),
             Column(
               children: <Widget>[
                 RidesList(_rides),
