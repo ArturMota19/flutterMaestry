@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ChartBar extends StatelessWidget {
   const ChartBar({super.key, required this.label, required this.spendingAmount, required this.percentual});
@@ -13,6 +14,11 @@ class ChartBar extends StatelessWidget {
     var totalCost = 40.0; 
     totalCost -= spendingAmount;
     totalCost = totalCost < 0 ? totalCost * -1 : totalCost * -1;
+
+    var newPercentual = percentual;
+    if(percentual > 40.0) {
+      newPercentual = 1.0;
+    }
     return Column(
       children: <Widget>[
         FittedBox(
@@ -37,12 +43,14 @@ class ChartBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
-              FractionallySizedBox(
-                heightFactor: percentual,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: totalCost < 0 ? Colors.red : Colors.green,
-                    borderRadius: BorderRadius.circular(10.0),
+              SizedBox(
+                child: FractionallySizedBox(
+                  heightFactor: newPercentual,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: totalCost < 0 ? Colors.red : Colors.green,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                   ),
                 ),
               ),

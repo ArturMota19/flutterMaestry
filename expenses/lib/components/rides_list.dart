@@ -9,7 +9,7 @@ class RidesList extends StatelessWidget {
   
   double totalAmount(Rides ride) {
   double total = 0.0;
-  for (var value in ride.passangers.values) {
+  for (var value in ride.passengers.values) {
     total += value;
   }
   return total;
@@ -64,7 +64,7 @@ class RidesList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ride.passangers.keys.toString().replaceAll('(', '').replaceAll(')', ''),
+                      ride.passengers.keys.toString().replaceAll('(', '').replaceAll(')', ''),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,

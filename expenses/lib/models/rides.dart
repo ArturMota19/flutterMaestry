@@ -1,11 +1,11 @@
 class Rides {
   final String id;
-  final Map<String, double> passangers;
+  final Map<String, double> passengers;
   final DateTime date;
 
   Rides({
     required this.id, 
-    required this.passangers, 
+    required this.passengers, 
     required this.date
   });
 }

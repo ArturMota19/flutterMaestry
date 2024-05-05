@@ -28,7 +28,7 @@ class _RidesFormState extends State<RidesForm> {
   final amountController3 = TextEditingController();
 
   _submitForm() {
-    final passangers = {
+    final passengers = {
       if(passangerController0.text.isNotEmpty) passangerController0.text: double.tryParse(amountController0.text) ?? 0.0,
       if(passangerController1.text.isNotEmpty) passangerController1.text: double.tryParse(amountController1.text) ?? 0.0,
       if(passangerController2.text.isNotEmpty) passangerController2.text: double.tryParse(amountController2.text) ?? 0.0,
@@ -37,7 +37,7 @@ class _RidesFormState extends State<RidesForm> {
     if(passangerController0.text.isEmpty || amountController0.text.isEmpty) {
       return;
     }
-    widget.onSubmit(passangers);
+    widget.onSubmit(passengers);
   }
 
   @override
