@@ -63,7 +63,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    Rides(id: '0', passangers: {'Alice': 1.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
+    Rides(id: '0', passangers: {'Alice': 50.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
     Rides(id: '2', passangers: {'Alicesdf': 1.0, 'Bob': 2.0}  , date: DateTime.now().subtract(const Duration(days: 30))),
     Rides(id: '1', passangers: {'Artur': 2.0, 'Boss': 2.0, 'Claudia': 1.0}  , date: DateTime.now()),
   ];

@@ -1,9 +1,10 @@
+import 'package:expenses/components/chart_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/rides.dart';
 
 class Chart extends StatelessWidget {
-  const Chart(this.recentRides, {super.key});
+  const Chart(this.recentRides,  {super.key});
 
   final List<Rides> recentRides;
 
@@ -24,9 +25,6 @@ class Chart extends StatelessWidget {
           totalSum += recentRides[i].passangers.values.reduce((value, element) => value + element);
         }
       }
-      print(DateFormat.E().format(weekDay));
-      print(totalSum);
-
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 1), 'amount': totalSum,
       };
@@ -40,9 +38,14 @@ class Chart extends StatelessWidget {
       elevation: 6.0,
       margin: const EdgeInsets.all(20.0),
       child: Row(
-        children: <Widget>[
-
-        ],
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: groupedRides.map((data) {
+          return ChartBar(
+            label: '${data['day']}', 
+            spendingAmount: data['amount'] as double, 
+            percentual: (40.0 - (data['amount'] as double)) > 0 ? (40.0 - (data['amount'] as double)) / 40.0 : -1 * (40.0 - (data['amount'] as double)) / 40.0,
+          );
+        }).toList(),
       ),
     );
   }
