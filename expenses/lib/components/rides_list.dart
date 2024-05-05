@@ -18,8 +18,25 @@ class RidesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300.0,
-      child: ListView.builder(
+      padding: const EdgeInsets.all(10.0),
+      height: 600.0,
+      child: rides.isEmpty ? Column(
+        children: <Widget>[
+          Text(
+            'No rides added yet!',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Container(
+            padding: const EdgeInsets.all(20.0),
+            height: 200.0,
+            child: Image.asset(
+              'assets/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ) :
+       ListView.builder(
         itemCount: rides.length,
         itemBuilder: (ctx, index){
           final ride = rides[index];
@@ -33,18 +50,14 @@ class RidesList extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                       width: 2.0,
                     ),
                   ),
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     'R\$: ${totalAmount(ride).toString()}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.purple,
-                    ),
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),
                 Column(
@@ -60,11 +73,7 @@ class RidesList extends StatelessWidget {
                     ),
                     Text(
                       DateFormat('dd/MM/yyyy').format(ride.date),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 12.0,
-                      ),
+                      style: Theme.of(context).textTheme.titleMedium,
                       
                       )
                   ],
