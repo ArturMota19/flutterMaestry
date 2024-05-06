@@ -91,6 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Navigator.of(context).pop();
   }
+
+  _deleteRide(String id){
+    setState(() {
+      _rides.removeWhere((ride) => ride.id == id);
+    });
+  }
+
   _openRideModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -123,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Chart(_recentRides),
             Column(
               children: <Widget>[
-                RidesList(_recentRides),
+                RidesList(_recentRides, _deleteRide),
               ],
             )
           ],

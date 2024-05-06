@@ -38,7 +38,7 @@ class _RidesFormState extends State<RidesForm> {
       if(_passangerController2.text.isNotEmpty) _passangerController2.text: double.tryParse(_amountController2.text) ?? 0.0,
       if(_passangerController3.text.isNotEmpty) _passangerController3.text: double.tryParse(_amountController3.text) ?? 0.0,
     };
-    if(_passangerController0.text.isEmpty || _amountController0.text.isEmpty) {
+    if(_passangerController0.text.isEmpty || _amountController0.text.isEmpty ) {
       return;
     }
     widget.onSubmit(passengers, _selectedDate);

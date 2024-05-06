@@ -4,9 +4,10 @@ import 'package:intl/intl.dart';
 import '../models/rides.dart';
 
 class RidesList extends StatelessWidget {
-  const RidesList(this.rides, {super.key});
+  const RidesList(this.rides, this.onDelete, {super.key});
 
   final List<Rides> rides;
+  final void Function(String) onDelete;
   
   double totalAmount(Rides ride) {
   double total = 0.0;
@@ -74,6 +75,11 @@ class RidesList extends StatelessWidget {
                 DateFormat('dd/MM/yyyy').format(ride.date),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete),
+                color: Theme.of(context).colorScheme.error,
+                onPressed: () => onDelete(ride.id),
+              )
             ),
           );
         },
