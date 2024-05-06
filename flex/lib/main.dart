@@ -20,6 +20,12 @@ class FlexStudy extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  // IMPORTANT NOTE:
+  // The Flexible widget must be a descendant of a Row, Column, or Flex
+  // widget, and the path from the Flexible widget to its enclosing Row,
+  // Column, or Flex must contain only StatelessWidgets or StatefulWidgets.
+  // If this is not the case, then the Flexible widget will not work.
+  // Expanded is a shorthand for Flexible with tight fit.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +40,25 @@ class MyHomePage extends StatelessWidget {
             color: Colors.red,
             child: const Text('Item 1 - pretty big!'),
           ),
-          Container(
-            height: 100,
-            color: Colors.blue,
-            child: const Text('Item 2'),
+          // Flexible tight will take up the remaining space
+          Flexible(
+            fit: FlexFit.tight,
+            // work the same as fr in css
+            flex: 2,
+            child: Container(
+              height: 100,
+              color: Colors.blue,
+              child: const Text('Item 2'),
+            ),
           ),
-          Container(
-            height: 100,
-            color: Colors.orange,
-            child: const Text('Item 3'),
+          Flexible(
+            fit: FlexFit.loose,
+            flex: 1,
+            child: Container(
+              height: 100,
+              color: Colors.orange,
+              child: const Text('Item 3'),
+            ),
           ),
         ],
       ),
