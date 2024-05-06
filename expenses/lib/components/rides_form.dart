@@ -6,7 +6,7 @@ class RidesForm extends StatefulWidget {
   
   RidesForm(this.onSubmit, {super.key});
 
-  final void Function(Map<String, double>) onSubmit;
+  final void Function(Map<String, double>, DateTime) onSubmit;
 
   @override
   State<RidesForm> createState() => _RidesFormState();
@@ -29,7 +29,7 @@ class _RidesFormState extends State<RidesForm> {
 
   final _amountController3 = TextEditingController();
 
-  var _selectedDate;
+  var _selectedDate = DateTime.now();
 
   _submitForm() {
     final passengers = {
@@ -41,7 +41,7 @@ class _RidesFormState extends State<RidesForm> {
     if(_passangerController0.text.isEmpty || _amountController0.text.isEmpty) {
       return;
     }
-    widget.onSubmit(passengers);
+    widget.onSubmit(passengers, _selectedDate);
   }
 
   _showDatePicker() {

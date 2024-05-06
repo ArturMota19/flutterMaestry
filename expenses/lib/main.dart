@@ -69,10 +69,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    Rides(id: '0', passengers: {'Artur': 22.0, 'Bob': 2.0, 'Carol': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
-    Rides(id: '1', passengers: {'Alisson': 2.0, 'Bruno': 34.0, 'Coralina': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
-    Rides(id: '2', passengers: {'Ambrosia': 4.0, 'Breno': 2.0, 'Celia': 5.0}  , date: DateTime.now().subtract(const Duration(days: 4))),
-    Rides(id: '3', passengers: {'Amélia': 9.0, 'Bosh': 2.0, 'Cap': 12.0}  , date: DateTime.now().subtract(const Duration(days: 30))),
+
   ];
 
   List<Rides> get _recentRides {
@@ -81,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addRide(Map<String, double> passengers) {
+  _addRide(Map<String, double> passengers, DateTime date) {
     final newRide = Rides(
       id: Random().nextDouble().toString(),
       passengers: passengers,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
