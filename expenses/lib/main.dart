@@ -21,7 +21,7 @@ class RideExpensesApp extends StatelessWidget {
       theme: ThemeData(
         // primarySwatch: receive a color,
         // primarySwatch: receive a MaterialColor object (interval of colors),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple, accentColor: Colors.white),
+        primaryColor: Color.fromARGB(255, 4, 41, 56),
         textTheme: ThemeData.light().textTheme.copyWith(
           titleLarge: const TextStyle(
             fontSize: 20.0,
@@ -47,6 +47,12 @@ class RideExpensesApp extends StatelessWidget {
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
           ),
+          labelMedium: const TextStyle(
+            fontSize: 12.0,
+            color: Colors.white,
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.bold,
+          ),
         ),
     ));
   }
@@ -64,9 +70,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
     Rides(id: '0', passengers: {'Artur': 22.0, 'Bob': 2.0, 'Carol': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
-    Rides(id: '0', passengers: {'Alisson': 2.0, 'Bruno': 34.0, 'Coralina': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
-    Rides(id: '0', passengers: {'Ambrosia': 4.0, 'Breno': 2.0, 'Celia': 5.0}  , date: DateTime.now().subtract(const Duration(days: 4))),
-    Rides(id: '0', passengers: {'Amélia': 9.0, 'Bosh': 2.0, 'Cap': 12.0}  , date: DateTime.now().subtract(const Duration(days: 3))),
+    Rides(id: '1', passengers: {'Alisson': 2.0, 'Bruno': 34.0, 'Coralina': 5.0}  , date: DateTime.now().subtract(const Duration(days: 1))),
+    Rides(id: '2', passengers: {'Ambrosia': 4.0, 'Breno': 2.0, 'Celia': 5.0}  , date: DateTime.now().subtract(const Duration(days: 4))),
+    Rides(id: '3', passengers: {'Amélia': 9.0, 'Bosh': 2.0, 'Cap': 12.0}  , date: DateTime.now().subtract(const Duration(days: 30))),
   ];
 
   List<Rides> get _recentRides {
@@ -120,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Chart(_recentRides),
             Column(
               children: <Widget>[
-                RidesList(_rides),
+                RidesList(_recentRides),
               ],
             )
           ],

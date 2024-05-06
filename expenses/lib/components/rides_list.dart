@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import '../models/rides.dart';
 
@@ -41,46 +42,40 @@ class RidesList extends StatelessWidget {
         itemBuilder: (ctx, index){
           final ride = rides[index];
           return Card(
-            child: Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 20.0,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
+            elevation: 5.0,
+            margin: const EdgeInsets.symmetric(
+              vertical: 5.0,
+              horizontal: 5.0,
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30.0,
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                    child: Text(
+                      'R\$${totalAmount(ride).toStringAsFixed(2)}',
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ),
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    'R\$: ${totalAmount(ride).toString()}',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      ride.passengers.keys.toString().replaceAll('(', '').replaceAll(')', ''),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
-                      ),
-        
-                    ),
-                    Text(
-                      DateFormat('dd/MM/yyyy').format(ride.date),
-                      style: Theme.of(context).textTheme.titleMedium,
-                      
-                      )
-                  ],
+              ),
+              title: Text(
+                ride.passengers.keys.toString().replaceAll('(', '').replaceAll(')', ''),
+                style: const TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            )
-        );
+              ),
+              subtitle: Text(
+                DateFormat('dd/MM/yyyy').format(ride.date),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+          );
         },
       ),
     );

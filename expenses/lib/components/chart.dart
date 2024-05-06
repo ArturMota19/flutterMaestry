@@ -11,7 +11,7 @@ class Chart extends StatelessWidget {
 List<Map<String, Object>> get groupedRides {
   return List.generate(7, (index) {
     final weekDay = DateTime.now().subtract(
-      Duration(days: 6 -index),
+      Duration(days: index),
     );
 
     double totalSum = 0.0;
@@ -29,7 +29,7 @@ List<Map<String, Object>> get groupedRides {
     return {
       'day': DateFormat.EEEE().format(weekDay)[0], 'amount': totalSum,
     };
-  });
+  }).reversed.toList();
 }
 
   @override
