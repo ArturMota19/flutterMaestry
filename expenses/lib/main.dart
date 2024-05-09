@@ -69,6 +69,106 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
+    Rides(
+      id: 'r1',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 1)),
+    ),
+    Rides(
+      id: 'r2',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 3)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    Rides(
+      id: 'r3',
+      passengers: {
+        'John': 100.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+    
 
   ];
 
@@ -109,8 +209,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+
+    final appBar = AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Ride Expenses',
@@ -123,15 +223,23 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {},
           ),
         ],
-      ),
+      );
+
+    final availableHeight = MediaQuery.of(context).size.height 
+    - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Chart(_recentRides),
-            Column(
-              children: <Widget>[
-                RidesList(_recentRides, _deleteRide),
-              ],
+            Container(
+              height: availableHeight * 0.4,
+              child: Chart(_recentRides)
+              ),
+            Container(
+              height: availableHeight * 0.6,
+              child: RidesList(_rides, _deleteRide)
             )
           ],
         ),
