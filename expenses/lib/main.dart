@@ -23,32 +23,32 @@ class RideExpensesApp extends StatelessWidget {
         // primarySwatch: receive a MaterialColor object (interval of colors),
         primaryColor: Color.fromARGB(255, 4, 41, 56),
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleLarge: const TextStyle(
-            fontSize: 20.0,
+          titleLarge: TextStyle(
+            fontSize: 20 * MediaQuery.of(context).textScaler.scale(1.0),
             color: Colors.black,
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
           ),
-          titleMedium: const TextStyle(
-            fontSize: 13.0,
+          titleMedium: TextStyle(
+            fontSize: 13 * MediaQuery.of(context).textScaler.scale(1.0),
             color: Colors.grey,
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
           ),
-          titleSmall: const TextStyle(
-            fontSize: 12.0,
+          titleSmall: TextStyle(
+            fontSize: 12 * MediaQuery.of(context).textScaler.scale(1.0),
             color: Colors.red,
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
           ),
-          labelLarge: const TextStyle(
-            fontSize: 20.0,
+          labelLarge: TextStyle(
+            fontSize: 20 * MediaQuery.of(context).textScaler.scale(1.0),
             color: Colors.purple,
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
           ),
-          labelMedium: const TextStyle(
-            fontSize: 12.0,
+          labelMedium: TextStyle(
+            fontSize: 12 * MediaQuery.of(context).textScaler.scale(1.0),
             color: Colors.white,
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
@@ -234,11 +234,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: availableHeight * 0.4,
+              height: availableHeight * 0.2,
               child: Chart(_recentRides)
               ),
             Container(
-              height: availableHeight * 0.6,
+              height: availableHeight * 0.8,
               child: RidesList(_rides, _deleteRide)
             )
           ],
