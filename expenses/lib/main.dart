@@ -2,6 +2,7 @@ import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/rides_form.dart';
 import 'package:expenses/components/rides_list.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:expenses/models/rides.dart';
 import 'dart:math';
@@ -15,6 +16,10 @@ class RideExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
+
     return MaterialApp(
       title: 'Ride Expenses',
       home: MyHomePage(),
@@ -69,109 +74,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    Rides(
-      id: 'r1',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 1)),
-    ),
-    Rides(
-      id: 'r2',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Rides(
-      id: 'r3',
-      passengers: {
-        'John': 100.0,
-        'Mary': 50.0,
-        'Peter': 30.0,
-      },
-      date: DateTime.now().subtract(const Duration(days: 5)),
-    ),
+    // Rides(
+    //   id: 'r1',
+    //   passengers: {
+    //     'John': 1.0,
+    //     'Mary': 5.0,
+    //     'Peter': 3.0,
+    //   },
+    //   date: DateTime.now().subtract(const Duration(days: 1)),
+    // ),
+    // Rides(
+    //   id: 'r2',
+    //   passengers: {
+    //     'John': 1.0,
+    //     'Mary': 50.0,
+    //     'Peter': 30.0,
+    //   },
+    //   date: DateTime.now().subtract(const Duration(days: 3)),
+    // ),
     
 
   ];
-
+  bool _showChart = false;
   List<Rides> get _recentRides {
     return _rides.where((ride) {
       return ride.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
@@ -209,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
     final appBar = AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -234,11 +159,28 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: availableHeight * 0.2,
+              child: isLandscape
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Show Chart'),
+                      Switch(value: _showChart, onChanged: (value){
+                        setState(() {
+                          _showChart = value;
+                        });
+                      }),
+                    ],
+                  )
+                : null,
+            ),
+            if(_showChart || !isLandscape)
+            Container(
+              height: isLandscape ? availableHeight * 0.7 : availableHeight * 0.3,
               child: Chart(_recentRides)
               ),
-            Container(
-              height: availableHeight * 0.8,
+            if(!_showChart || !isLandscape)
+              Container(
+              height: availableHeight * 0.70,
               child: RidesList(_rides, _deleteRide)
             )
           ],

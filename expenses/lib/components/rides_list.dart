@@ -19,23 +19,32 @@ class RidesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return rides.isEmpty ? Column(
-      children: <Widget>[
-        const SizedBox(height: 20.0),
-        Text(
-          'No rides added yet!',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        const SizedBox(height: 20.0),
-        Container(
-          height: 200.0,
-          child: Image.asset(
-            'assets/images/waiting.png',
-            fit: BoxFit.cover,
+    return rides.isEmpty ? 
+    LayoutBuilder(
+      builder: (ctx, constraints) {
+        return Column(
+        children: <Widget>[
+          SizedBox(height: 20),
+          Container(
+            height: constraints.maxHeight * 0.12,
+            child: Text(
+              'No rides added yet!',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
-        ),
-      ],
-    ) :
+          SizedBox(height: 20),
+          Container(
+            height: constraints.maxHeight * 0.6,
+            child: Image.asset(
+              'assets/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      );
+      }
+    ) 
+    :
      ListView.builder(
       itemCount: rides.length,
       itemBuilder: (ctx, index){
