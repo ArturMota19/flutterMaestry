@@ -67,7 +67,12 @@ class _RidesFormState extends State<RidesForm> {
       child: SingleChildScrollView(
         child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.only(
+                    top: 10.0,
+                    left: 10.0,
+                    right: 10.0,
+                    bottom: 10.0 + MediaQuery.of(context).viewInsets.bottom,
+                  ),
                   child: Column(
                     children: [
                       TextField(

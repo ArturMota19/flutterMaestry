@@ -143,10 +143,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
           ),
         actions: <Widget>[
+          if(isLandscape)
+            IconButton(
+              icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+              onPressed: () {
+                setState(() {
+                  _showChart = !_showChart;
+                });
+              },
+            ),
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              _openRideModal(context);
+            },
           ),
+
         ],
       );
 
@@ -157,22 +169,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              child: isLandscape
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Show Chart'),
-                      Switch(value: _showChart, onChanged: (value){
-                        setState(() {
-                          _showChart = value;
-                        });
-                      }),
-                    ],
-                  )
-                : null,
-            ),
             if(_showChart || !isLandscape)
             Container(
               height: isLandscape ? availableHeight * 0.7 : availableHeight * 0.3,
