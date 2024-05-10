@@ -82,11 +82,27 @@ class RidesList extends StatelessWidget {
               DateFormat('dd/MM/yyyy').format(ride.date),
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            trailing: IconButton(
+            trailing: MediaQuery.of(context).size.width > 300 ? 
+            TextButton.icon(
+              icon: const Icon(Icons.delete),
+              label: const Text("Delete"),
+              onPressed: () => onDelete(ride.id),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.error),
+                textStyle: MaterialStateProperty.all(
+                  const TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.black,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                  ),
+              ),
+            )) :
+            IconButton(
               icon: const Icon(Icons.delete),
               color: Theme.of(context).colorScheme.error,
               onPressed: () => onDelete(ride.id),
-            )
+            ),
           ),
         );
       },

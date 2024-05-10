@@ -16,6 +16,7 @@ class RideExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     // SystemChrome.setPreferredOrientations([
     //   DeviceOrientation.portraitUp,
     // ]);
@@ -74,24 +75,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Rides> _rides = [
-    // Rides(
-    //   id: 'r1',
-    //   passengers: {
-    //     'John': 1.0,
-    //     'Mary': 5.0,
-    //     'Peter': 3.0,
-    //   },
-    //   date: DateTime.now().subtract(const Duration(days: 1)),
-    // ),
-    // Rides(
-    //   id: 'r2',
-    //   passengers: {
-    //     'John': 1.0,
-    //     'Mary': 50.0,
-    //     'Peter': 30.0,
-    //   },
-    //   date: DateTime.now().subtract(const Duration(days: 3)),
-    // ),
+    Rides(
+      id: 'r1',
+      passengers: {
+        'John': 1.0,
+        'Mary': 5.0,
+        'Peter': 3.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 1)),
+    ),
+    Rides(
+      id: 'r2',
+      passengers: {
+        'John': 1.0,
+        'Mary': 50.0,
+        'Peter': 30.0,
+      },
+      date: DateTime.now().subtract(const Duration(days: 3)),
+    ),
     
 
   ];
